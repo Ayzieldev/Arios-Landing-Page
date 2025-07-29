@@ -19,6 +19,9 @@ import friesChickenNuggets from '../assets/images/Fires & Chicken Nuggets With D
 import coffeeMilkyLatte from '../assets/images/Coffee Milky Latte.jpg';
 import fullMenu from '../assets/images/Full Menu.jpg';
 import fullMenuSnacksDrinks from '../assets/images/Full-Menu-Snacks-Drinks.jpg';
+import 'aos/dist/aos.css';
+// @ts-ignore
+import AOS from 'aos';
 
 interface MenuItem {
   id: number;
@@ -225,12 +228,12 @@ const Menu: React.FC = () => {
     <>
       <section id="menu" className="menu">
         <div className="container">
-          <div className="section-title">
+          <div className="section-title" data-aos="fade-up" data-aos-delay="50" data-aos-offset="50">
             <h2>Our Featured Menu</h2>
             <p>Discover our carefully curated selection of delicious dishes and beverages</p>
           </div>
           
-          <div className="menu__categories">
+          <div className="menu__categories" data-aos="fade-up" data-aos-delay="50" data-aos-offset="50">
             {categories.map((category) => (
               <button
                 key={category.id}
@@ -243,9 +246,9 @@ const Menu: React.FC = () => {
             ))}
           </div>
           
-          <div className="menu__grid">
+          <div className="menu__grid" data-aos-delay="50">
             {displayedItems.map((item) => (
-              <div key={item.id} className={`menu-item ${item.popular ? 'menu-item--popular' : ''}`}>
+              <div key={item.id} className={`menu-item ${item.popular ? 'menu-item--popular' : ''}`} >
                 {item.popular && (
                   <div className="popular-badge">
                     <span>🔥 Popular</span>

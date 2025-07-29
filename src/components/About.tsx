@@ -1,12 +1,20 @@
 import React from 'react';
 import '../styles/components/_about.scss';
-import awardWinningIcon from '../assets/images/Award-WInning-Icon.png';
+import awardWinningIcon from '../assets/images/Award-WInning-Icon.png'; 
+import 'aos/dist/aos.css';
+// @ts-ignore
+import AOS from 'aos';
+
+
 
 const About: React.FC = () => {
-
+  AOS.init({
+    duration: 800, // animation duration in ms
+    once: true,    // whether animation should happen only once
+  });
   return (
-    <section id="about" className="about">
-      <div className="container">
+    <section id="about" className="about" >
+      <div className="container" data-aos="fade-up" data-aos-delay="100" data-aos-offset="100">
         <div className="about__content">
           <div className="about__image">
             <div className="about__image-container">
@@ -25,8 +33,7 @@ const About: React.FC = () => {
               </div>
             </div>
           </div>
-          <div 
-          className="about__text">
+          <div className="about__text" data-aos="fade-up" data-aos-delay="100" data-aos-offset="100">
             <div className="about__badge">
               <span className="about__badge-text">About Arios Cafe</span>
             </div>

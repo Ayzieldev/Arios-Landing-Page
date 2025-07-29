@@ -1,6 +1,9 @@
 import React from 'react';
 import GoogleMapEmbed from './GoogleMapEmbed';
 import '../styles/components/_contact.scss';
+import 'aos/dist/aos.css';
+// @ts-ignore
+import AOS from 'aos';
 
 const Contact: React.FC = () => {
   const openMessenger = () => {
@@ -29,7 +32,7 @@ const Contact: React.FC = () => {
   return (
     <section id="contact" className="contact">
       <div className="container">
-        <div className="section-title">
+        <div className="section-title" data-aos="fade-up" data-aos-delay="100" data-aos-offset="100">
           <div className="section-title__badge">
             <span>Contact Us</span>
           </div>
@@ -39,14 +42,14 @@ const Contact: React.FC = () => {
         
         <div className="contact__content">
           <div className="contact__info">
-            <div className="contact__header">
+            <div className="contact__header" data-aos="fade-up" data-aos-delay="100" data-aos-offset="100">
               <div className="contact__header-icon">💬</div>
               <h3>Let's Connect</h3>
               <p>Choose your preferred way to reach us</p>
             </div>
             
             <div className="contact__items">
-              <div className="contact__item contact__item--primary">
+              <div className="contact__item contact__item--primary" data-aos="fade-up" data-aos-delay="100" data-aos-offset="100">
                 <div className="contact__icon">📍</div>
                 <div className="contact__details">
                   <h4>Visit Our Locations</h4>
@@ -65,7 +68,7 @@ const Contact: React.FC = () => {
                 </div>
               </div>
               
-              <div className="contact__item contact__item--messenger">
+              <div className="contact__item contact__item--messenger" data-aos="fade-up" data-aos-delay="100" data-aos-offset="100">
                 <div className="contact__icon">💬</div>
                 <div className="contact__details">
                   <h4>Message Us on Facebook</h4>
@@ -77,7 +80,7 @@ const Contact: React.FC = () => {
                 </div>
               </div>
               
-              <div className="contact__item">
+              <div className="contact__item" data-aos="fade-up" data-aos-delay="100" data-aos-offset="100">
                 <div className="contact__icon">📞</div>
                 <div className="contact__details">
                   <h4>Call Us</h4>
@@ -86,7 +89,7 @@ const Contact: React.FC = () => {
                 </div>
               </div>
               
-              <div className="contact__item">
+              <div className="contact__item" data-aos="fade-up" data-aos-delay="100" data-aos-offset="100">
                 <div className="contact__icon">✉️</div>
                 <div className="contact__details">
                   <h4>Email Us</h4>
@@ -95,7 +98,7 @@ const Contact: React.FC = () => {
                 </div>
               </div>
               
-              <div className="contact__item contact__item--service">
+              <div className="contact__item contact__item--service" data-aos="fade-up" data-aos-delay="100" data-aos-offset="100">
                 <div className="contact__icon">🌍</div>
                 <div className="contact__details">
                   <h4>Service Areas</h4>
@@ -112,7 +115,7 @@ const Contact: React.FC = () => {
             </div>
           </div>
           
-          <div className="contact__map-section">
+          <div className="contact__map-section" data-aos="fade-up" data-aos-delay="100" data-aos-offset="100">
             <div className="contact__item contact__item--hours">
               <div className="contact__icon">🕒</div>
               <div className="contact__details">
@@ -135,7 +138,7 @@ const Contact: React.FC = () => {
               </div>
             </div>
             
-            <div className="contact__map-header">
+            <div className="contact__map-header" data-aos="fade-up" data-aos-delay="100" data-aos-offset="100">
               <div className="map-header__icon">🗺️</div>
               <h3>Find Us on the Map</h3>
               <p>Click to get directions to our locations</p>

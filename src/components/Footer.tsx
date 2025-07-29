@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/components/_footer.scss';
+import ariosLogo from '../assets/images/Arios Logo.png';
 
 const Footer: React.FC = () => {
   return (
@@ -9,8 +10,7 @@ const Footer: React.FC = () => {
           <div className="footer__section">
             <div className="footer__logo">
               <div className="logo">
-                <div className="logo__icon">☕</div>
-                <span className="logo__text">Arios Cafe</span>
+                <img src={ariosLogo} alt="Arios Cafe" className="logo__image" />
               </div>
             </div>
             <p className="footer__description">
@@ -31,7 +31,6 @@ const Footer: React.FC = () => {
               <li><a href="#home">Home</a></li>
               <li><a href="#about">About Us</a></li>
               <li><a href="#menu">Menu</a></li>
-              <li><a href="#services">Services</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
