@@ -1,0 +1,299 @@
+@import '../variables';
+@import '../mixins';
+
+.menu {
+  @include section-padding;
+  background-color: $white; // Changed from light-gray to white for better contrast
+
+  &__categories {
+    @include flex-center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-3xl;
+    flex-wrap: wrap;
+
+    @include mobile {
+      gap: $spacing-sm;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: $spacing-xl;
+    margin-bottom: $spacing-3xl;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+  }
+
+  &__view-more {
+    @include flex-center;
+    margin-bottom: $spacing-3xl;
+  }
+
+  &__cta {
+    @include flex-center;
+    gap: $spacing-lg;
+    flex-wrap: wrap;
+
+    @include mobile {
+      @include flex-column;
+      gap: $spacing-md;
+    }
+  }
+}
+
+.category-btn {
+  background-color: $white;
+  color: $dark-gray; // Changed from gray to dark-gray for better contrast
+  border: 2px solid #e0e0e0; // Added border for better definition
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $border-radius-xl;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition-normal;
+  font-size: $font-size-sm;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Added subtle shadow
+
+  &:hover {
+    color: $primary-color;
+    border-color: $primary-color;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &--active {
+    background-color: $primary-color;
+    color: $white;
+    border-color: $primary-color;
+    box-shadow: 0 4px 8px rgba(135, 206, 235, 0.3);
+
+    &:hover {
+      background-color: $primary-dark;
+      border-color: $primary-dark;
+    }
+  }
+
+  .category-icon {
+    font-size: $font-size-lg;
+  }
+
+  .category-name {
+    font-size: $font-size-sm;
+  }
+}
+
+.menu-item {
+  @include card;
+  overflow: hidden;
+  position: relative;
+  background: $white;
+  border: 1px solid #f0f0f0; // Added subtle border
+
+  &:hover {
+    .menu-item__overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); // Enhanced shadow on hover
+  }
+
+  &--popular {
+    .popular-badge {
+      position: absolute;
+      top: $spacing-md;
+      right: $spacing-md;
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      color: white;
+      padding: $spacing-xs $spacing-sm;
+      border-radius: $border-radius-lg;
+      font-size: $font-size-xs;
+      font-weight: 600;
+      z-index: 2;
+      box-shadow: $shadow-sm;
+    }
+  }
+
+  &__image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    border-radius: $border-radius-lg $border-radius-lg 0 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8); // Darker overlay for better contrast
+    @include flex-center;
+    opacity: 0;
+    visibility: hidden;
+    transition: $transition-normal;
+    padding: $spacing-lg;
+  }
+
+  &__details {
+    text-align: center;
+    color: white;
+
+    h4 {
+      font-size: $font-size-xl;
+      margin-bottom: $spacing-sm;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); // Added text shadow
+    }
+
+    p {
+      font-size: $font-size-sm;
+      margin-bottom: $spacing-md;
+      opacity: 0.95; // Increased opacity for better readability
+      line-height: 1.4;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); // Added text shadow
+    }
+
+    .price {
+      font-size: $font-size-lg;
+      font-weight: 600;
+      color: #ffd700; // Changed to gold color for better visibility
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); // Added text shadow
+    }
+  }
+
+  &__content {
+    padding: $spacing-lg;
+    background: white;
+  }
+
+  &__header {
+    @include flex-between;
+    align-items: flex-start;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__name {
+    font-size: $font-size-lg;
+    font-weight: 600;
+    color: $dark-gray;
+    margin: 0;
+    flex: 1;
+    margin-right: $spacing-sm;
+  }
+
+  &__price {
+    font-size: $font-size-lg;
+    font-weight: 700;
+    color: $primary-color;
+    white-space: nowrap;
+  }
+
+  &__description {
+    color: #555; // Changed from gray to darker color for better readability
+    font-size: $font-size-sm;
+    line-height: 1.5;
+    margin-bottom: $spacing-md;
+  }
+
+  &__category {
+    display: inline-block;
+    background-color: #f8f9fa; // Changed to light gray background
+    color: $dark-gray; // Changed to dark text for better contrast
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-md;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid #e9ecef; // Added subtle border
+  }
+}
+
+// Full Menu Modal Styles
+.full-menu-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  animation: fadeIn 0.3s ease-in-out;
+
+  &__content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__close {
+    position: absolute;
+    top: $spacing-lg;
+    right: $spacing-lg;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: $transition-normal;
+    z-index: 1001;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      background: rgba(255, 0, 0, 0.8);
+      border-color: #ff0000;
+      transform: scale(1.1);
+    }
+
+    @include mobile {
+      top: $spacing-md;
+      right: $spacing-md;
+      width: 45px;
+      height: 45px;
+      font-size: 24px;
+    }
+  }
+
+  &__image {
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+} 

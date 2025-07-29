@@ -1,0 +1,476 @@
+@import '../variables';
+@import '../mixins';
+
+.hero {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding-top: 80px;
+
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+  }
+
+  &__background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.3) contrast(1.2) blur(3px);
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(135, 206, 235, 0.1), rgba(70, 130, 180, 0.2));
+    z-index: 1;
+  }
+
+  &__content {
+    @include flex-between;
+    align-items: flex-start;
+    gap: 10rem;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    padding: 0 10rem;
+
+    @include mobile {
+      @include flex-column;
+      text-align: center;
+      gap: $spacing-2xl;
+      padding: 0 $spacing-lg;
+    }
+  }
+
+  &__text-section {
+    flex: 0 0 40%;
+    max-width: 500px;
+    z-index: 3;
+    align-self: flex-start;
+    margin-top: 30px;
+
+    @include mobile {
+      flex: 1;
+      max-width: 100%;
+      order: 2;
+      padding-left: $spacing-lg;
+      margin-top: 100px;
+    }
+  }
+
+  &__badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: $dark-gray;
+    padding: $spacing-sm $spacing-lg;
+    border-radius: $border-radius-xl;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    margin-bottom: $spacing-lg;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    animation: badgeGlow 2s ease-in-out infinite;
+    font-family: $font-family-primary;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  &__title {
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: $white;
+    margin-bottom: $spacing-lg;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-family: $font-family-cursive;
+    letter-spacing: 0.5px;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    @include mobile {
+      font-size: $font-size-4xl;
+    }
+
+    @include tablet {
+      font-size: $font-size-4xl;
+    }
+
+    .title-line {
+      display: block;
+      line-height: 1.2;
+    }
+  }
+
+  &__description {
+    font-size: $font-size-lg;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: $spacing-xl;
+    line-height: 1.8;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-weight: 300;
+    font-family: $font-family-primary;
+    max-width: 1000px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    @include mobile {
+      max-width: 100%;
+    }
+  }
+
+
+
+  &__actions {
+    @include flex-center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-2xl;
+
+    @include mobile {
+      @include flex-column;
+      width: 100%;
+    }
+
+    .btn {
+      min-width: 180px;
+      padding: $spacing-md $spacing-xl;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      border-radius: $border-radius-lg;
+      transition: $transition-normal;
+      font-size: $font-size-base;
+      font-family: $font-family-primary;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+
+      &.btn-primary {
+        background: linear-gradient(135deg, $primary-color, $accent-color);
+        color: $white;
+        border: 2px solid $primary-color;
+        box-shadow: 0 4px 15px rgba(135, 206, 235, 0.3);
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(135, 206, 235, 0.5);
+        }
+      }
+
+      &.btn-secondary {
+        background: transparent;
+        color: $white;
+        border: 2px solid $white;
+        backdrop-filter: blur(10px);
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+
+  &__visual-section {
+    flex: 0 0 60%;
+    position: relative;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 2rem;
+    padding-top: 2rem;
+
+    @include mobile {
+      flex: 1;
+      height: 400px;
+      order: 1;
+      padding-left: 0;
+    }
+  }
+
+  &__coffee-elements {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__main-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 8px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 3;
+
+    @include mobile {
+      width: 250px;
+      height: 250px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .coffee-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 1.5s ease-in-out;
+      opacity: 1;
+      animation: fadeIn 1.5s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  // Coffee beans scatter
+  .coffee-beans-scatter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+
+    .coffee-bean {
+      position: absolute;
+      width: 20px;
+      height: 12px;
+      background: linear-gradient(45deg, #8B4513, #A0522D);
+      border-radius: 50%;
+      opacity: 0.8;
+
+      &--1 {
+        top: 15%;
+        right: 15%;
+        transform: rotate(45deg);
+        animation: float 3s ease-in-out infinite;
+      }
+
+      &--2 {
+        top: 30%;
+        right: 25%;
+        transform: rotate(-30deg);
+        animation: float 3s ease-in-out infinite 0.5s;
+      }
+
+      &--3 {
+        top: 45%;
+        right: 10%;
+        transform: rotate(60deg);
+        animation: float 3s ease-in-out infinite 1s;
+      }
+
+      &--4 {
+        top: 60%;
+        right: 20%;
+        transform: rotate(-15deg);
+        animation: float 3s ease-in-out infinite 1.5s;
+      }
+
+      &--5 {
+        top: 20%;
+        right: 35%;
+        transform: rotate(75deg);
+        animation: float 3s ease-in-out infinite 2s;
+      }
+
+      &--6 {
+        top: 75%;
+        right: 30%;
+        transform: rotate(-45deg);
+        animation: float 3s ease-in-out infinite 2.5s;
+      }
+    }
+  }
+
+
+
+  // Coffee bowl
+  .coffee-bowl {
+    position: absolute;
+    bottom: 15%;
+    right: 15%;
+    width: 60px;
+    height: 40px;
+    background: linear-gradient(45deg, #696969, #A9A9A9);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    border: 2px solid #2F4F4F;
+    z-index: 2;
+
+    .bowl-content {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      background: linear-gradient(45deg, #8B4513, #A0522D);
+      overflow: hidden;
+
+      .coffee-bean {
+        position: absolute;
+        width: 8px;
+        height: 5px;
+        background: linear-gradient(45deg, #654321, #8B4513);
+        border-radius: 50%;
+
+        &--bowl-1 {
+          top: 20%;
+          left: 20%;
+          transform: rotate(30deg);
+        }
+
+        &--bowl-2 {
+          top: 40%;
+          left: 50%;
+          transform: rotate(-45deg);
+        }
+
+        &--bowl-3 {
+          top: 60%;
+          left: 30%;
+          transform: rotate(60deg);
+        }
+      }
+    }
+  }
+
+  // Coffee leaves
+  .coffee-leaves {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+
+    .coffee-leaf {
+      position: absolute;
+      width: 25px;
+      height: 15px;
+      background: linear-gradient(45deg, #228B22, #32CD32);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      opacity: 0.8;
+
+      &--1 {
+        top: 25%;
+        right: 40%;
+        transform: rotate(45deg);
+        animation: float 4s ease-in-out infinite;
+      }
+
+      &--2 {
+        top: 50%;
+        right: 45%;
+        transform: rotate(-30deg);
+        animation: float 4s ease-in-out infinite 1s;
+      }
+
+      &--3 {
+        top: 35%;
+        right: 50%;
+        transform: rotate(60deg);
+        animation: float 4s ease-in-out infinite 2s;
+      }
+    }
+  }
+
+  &__scroll-indicator {
+    position: absolute;
+    bottom: $spacing-xl;
+    left: 50%;
+    transform: translateX(-50%);
+    @include flex-column-center;
+    gap: $spacing-sm;
+    color: $white;
+    font-size: $font-size-sm;
+    font-weight: 500;
+    z-index: 2;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+
+    .scroll-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 2px solid $white;
+      border-bottom: 2px solid $white;
+      transform: rotate(45deg);
+      animation: scroll 2s ease-in-out infinite;
+      filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));
+    }
+  }
+}
+
+// Animations
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(var(--rotation, 0deg));
+  }
+  50% {
+    transform: translateY(-10px) rotate(var(--rotation, 0deg));
+  }
+}
+
+@keyframes scroll {
+  0%, 100% {
+    transform: rotate(45deg) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(45deg) translateY(10px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes badgeGlow {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+} 

@@ -1,0 +1,254 @@
+@import '../variables';
+@import '../mixins';
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  backdrop-filter: none;
+  z-index: 1000;
+  padding: $spacing-md 0;
+  transition: $transition-normal;
+  box-shadow: none;
+
+  &--scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  &__content {
+    @include flex-between;
+  }
+
+  &__logo {
+    .logo {
+      @include flex-center;
+      gap: $spacing-sm;
+
+      &__image {
+        height: 80px;
+        width: auto;
+        object-fit: contain;
+        transition: $transition-normal;
+        filter: brightness(0) invert(1); // Makes the logo white
+
+        @include mobile {
+          height: 60px;
+        }
+      }
+    }
+  }
+
+  &--scrolled &__logo .logo {
+    &__image {
+      filter: none; // Removes the white filter when scrolled, making it darker
+    }
+  }
+
+  &__nav {
+    @include desktop {
+      display: block;
+    }
+
+    @include mobile {
+      position: fixed;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: $white;
+      box-shadow: $shadow-lg;
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: $transition-normal;
+      padding: $spacing-lg 0;
+
+      &--open {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    .nav__list {
+      @include flex-center;
+      gap: $spacing-xl;
+      list-style: none;
+
+      @include mobile {
+        @include flex-column;
+        gap: $spacing-lg;
+      }
+    }
+
+    .nav__item {
+      .nav__link {
+        color: $white;
+        font-weight: 400;
+        text-decoration: none;
+        transition: $transition-fast;
+        position: relative;
+        font-size: $font-size-sm;
+        letter-spacing: 0.3px;
+        font-family: $font-family-primary;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+        &:hover {
+          color: rgba(255, 255, 255, 0.8);
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background-color: $white;
+          transition: $transition-fast;
+        }
+
+        &:hover::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &--scrolled &__nav .nav__item .nav__link {
+    color: $dark-gray;
+
+    &:hover {
+      color: $primary-color;
+    }
+
+    &::after {
+      background-color: $primary-color;
+    }
+  }
+
+  &__actions {
+    @include flex-center;
+    gap: $spacing-md;
+
+          .btn {
+        min-width: 120px;
+        padding: $spacing-sm $spacing-lg;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        border-radius: $border-radius-lg;
+        transition: $transition-normal;
+        font-size: $font-size-sm;
+        font-family: $font-family-primary;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+      &.btn-order {
+        background: linear-gradient(135deg, $primary-color, $accent-color);
+        color: $white;
+        border: 2px solid $primary-color;
+        box-shadow: 0 4px 15px rgba(135, 206, 235, 0.3);
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(135, 206, 235, 0.5);
+        }
+      }
+
+      &.btn-contact {
+        background: transparent;
+        color: $white;
+        border: 2px solid $white;
+        backdrop-filter: blur(10px);
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+          transform: translateY(-2px);
+        }
+      }
+
+      @include mobile {
+        display: none;
+      }
+    }
+  }
+
+  &--scrolled &__actions .btn {
+    &.btn-order {
+      background: linear-gradient(135deg, $primary-color, $accent-color);
+      color: $white;
+      border-color: $primary-color;
+      box-shadow: 0 4px 15px rgba(135, 206, 235, 0.3);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(135, 206, 235, 0.5);
+      }
+    }
+
+    &.btn-contact {
+      background: transparent;
+      color: $dark-gray;
+      border-color: $dark-gray;
+      backdrop-filter: blur(10px);
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  &__menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+
+    @include mobile {
+      display: flex;
+    }
+
+    span {
+      width: 100%;
+      height: 3px;
+      background-color: $white;
+      border-radius: 10px;
+      transition: $transition-normal;
+      transform-origin: 1px;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    &--open {
+      span {
+        &:first-child {
+          transform: rotate(45deg);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        &:last-child {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
+
+  &--scrolled &__menu-toggle span {
+    background-color: $dark-gray;
+    box-shadow: none;
+  }
+} 

@@ -1,0 +1,263 @@
+@import 'variables';
+@import 'mixins';
+
+// Reset and Base Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $dark-gray;
+  background-color: $white;
+  overflow-x: hidden;
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  @include heading-primary;
+  margin-bottom: $spacing-md;
+}
+
+h1 {
+  font-size: $font-size-5xl;
+  
+  @include mobile {
+    font-size: $font-size-4xl;
+  }
+}
+
+h2 {
+  font-size: $font-size-4xl;
+  
+  @include mobile {
+    font-size: $font-size-3xl;
+  }
+}
+
+h3 {
+  font-size: $font-size-3xl;
+  
+  @include mobile {
+    font-size: $font-size-2xl;
+  }
+}
+
+h4 {
+  font-size: $font-size-2xl;
+}
+
+h5 {
+  font-size: $font-size-xl;
+}
+
+h6 {
+  font-size: $font-size-lg;
+}
+
+p {
+  @include text-body;
+  margin-bottom: $spacing-md;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  transition: $transition-fast;
+  
+  &:hover {
+    color: $primary-dark;
+  }
+}
+
+// Button Styles
+.btn {
+  display: inline-block;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $border-radius-md;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: $transition-normal;
+  border: none;
+  font-size: $font-size-base;
+  
+  &-primary {
+    @include button-primary;
+  }
+  
+  &-secondary {
+    @include button-secondary;
+  }
+  
+  &-large {
+    padding: $spacing-md $spacing-xl;
+    font-size: $font-size-lg;
+  }
+  
+  &-small {
+    padding: $spacing-xs $spacing-md;
+    font-size: $font-size-sm;
+  }
+}
+
+// Container
+.container {
+  @include container;
+}
+
+// Section Styles
+.section {
+  @include section-padding;
+  
+  &-title {
+    text-align: center;
+    margin-bottom: $spacing-2xl;
+    
+    h2 {
+      @include heading-primary;
+      margin-bottom: $spacing-sm;
+    }
+    
+    p {
+      @include text-body;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+}
+
+// Card Styles
+.card {
+  @include card;
+  
+  &-title {
+    @include heading-secondary;
+    margin-bottom: $spacing-md;
+  }
+  
+  &-content {
+    @include text-body;
+  }
+}
+
+// Grid System
+.grid {
+  display: grid;
+  gap: $spacing-lg;
+  
+  &-2 {
+    grid-template-columns: repeat(2, 1fr);
+    
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  &-3 {
+    grid-template-columns: repeat(3, 1fr);
+    
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  &-4 {
+    grid-template-columns: repeat(4, 1fr);
+    
+    @include desktop {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// Utility Classes
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: $spacing-xs; }
+.mb-2 { margin-bottom: $spacing-sm; }
+.mb-3 { margin-bottom: $spacing-md; }
+.mb-4 { margin-bottom: $spacing-lg; }
+.mb-5 { margin-bottom: $spacing-xl; }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: $spacing-xs; }
+.mt-2 { margin-top: $spacing-sm; }
+.mt-3 { margin-top: $spacing-md; }
+.mt-4 { margin-top: $spacing-lg; }
+.mt-5 { margin-top: $spacing-xl; }
+
+.p-0 { padding: 0; }
+.p-1 { padding: $spacing-xs; }
+.p-2 { padding: $spacing-sm; }
+.p-3 { padding: $spacing-md; }
+.p-4 { padding: $spacing-lg; }
+.p-5 { padding: $spacing-xl; }
+
+.d-none { display: none; }
+.d-block { display: block; }
+.d-flex { display: flex; }
+.d-grid { display: grid; }
+
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+
+.align-center { align-items: center; }
+.align-start { align-items: flex-start; }
+.align-end { align-items: flex-end; }
+
+// Animation Classes
+.fade-in {
+  @include fade-in;
+}
+
+.slide-up {
+  @include slide-up;
+}
+
+// Responsive Utilities
+.hide-mobile {
+  @include mobile {
+    display: none;
+  }
+}
+
+.show-mobile {
+  display: none;
+  
+  @include mobile {
+    display: block;
+  }
+} 

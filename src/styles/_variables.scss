@@ -1,0 +1,61 @@
+// Color Variables
+$primary-color: #87CEEB; // Sky Blue
+$primary-dark: #5F9EA0; // Darker Sky Blue
+$primary-light: #B0E0E6; // Light Sky Blue
+$secondary-color: #4682B4; // Steel Blue
+$accent-color: #00BFFF; // Deep Sky Blue
+
+// Neutral Colors
+$white: #FFFFFF;
+$light-gray: #F8F9FA;
+$gray: #6C757D;
+$dark-gray: #343A40;
+$black: #000000;
+
+// Typography
+$font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$font-family-secondary: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+$font-family-cursive: 'Dancing Script', cursive;
+
+// Font Sizes
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 1.5rem;
+$font-size-3xl: 1.875rem;
+$font-size-4xl: 2.25rem;
+$font-size-5xl: 3rem;
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-2xl: 3rem;
+$spacing-3xl: 4rem;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Border Radius
+$border-radius-sm: 0.25rem;
+$border-radius-md: 0.5rem;
+$border-radius-lg: 1rem;
+$border-radius-xl: 1.5rem;
+
+// Shadows
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+
+// Transitions
+$transition-fast: 0.15s ease-in-out;
+$transition-normal: 0.3s ease-in-out;
+$transition-slow: 0.5s ease-in-out; 

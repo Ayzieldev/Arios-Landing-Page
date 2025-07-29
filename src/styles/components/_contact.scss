@@ -1,0 +1,551 @@
+@import '../variables';
+@import '../mixins';
+
+.contact {
+  @include section-padding;
+  background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="15" height="15" patternUnits="userSpaceOnUse"><circle cx="7.5" cy="7.5" r="2" fill="%2387CEEB" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__content {
+    @include flex-between;
+    gap: $spacing-3xl;
+    margin-top: $spacing-2xl;
+
+    @include mobile {
+      @include flex-column;
+      gap: $spacing-2xl;
+    }
+  }
+
+  &__info {
+    flex: 1;
+    max-width: 600px;
+
+    @include mobile {
+      max-width: 100%;
+    }
+  }
+
+  &__messenger-section {
+    flex: 1;
+    max-width: 600px;
+    margin-bottom: $spacing-xl;
+
+    @include mobile {
+      max-width: 100%;
+      margin-bottom: $spacing-lg;
+    }
+  }
+
+  &__map-section {
+    flex: 1;
+    max-width: 600px;
+
+    @include mobile {
+      max-width: 100%;
+    }
+  }
+}
+
+// Section Title Styling
+.section-title {
+  text-align: center;
+  margin-bottom: $spacing-3xl;
+
+  &__badge {
+    display: inline-block;
+    background: linear-gradient(135deg, $primary-color, $secondary-color);
+    color: $white;
+    padding: $spacing-xs $spacing-md;
+    border-radius: $border-radius-xl;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: $spacing-md;
+    box-shadow: $shadow-sm;
+  }
+
+  h2 {
+    font-size: $font-size-4xl;
+    font-weight: 700;
+    color: $dark-gray;
+    margin-bottom: $spacing-md;
+    background: linear-gradient(135deg, $primary-color, $secondary-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    @include mobile {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  p {
+    font-size: $font-size-lg;
+    color: $gray;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+
+    @include mobile {
+      font-size: $font-size-base;
+    }
+  }
+}
+
+// Contact Header
+.contact__header {
+  text-align: center;
+  margin-bottom: $spacing-2xl;
+  padding: $spacing-xl;
+  background: linear-gradient(135deg, $white, #f8f9fa);
+  border-radius: $border-radius-xl;
+  box-shadow: $shadow-sm;
+  border: 1px solid rgba(135, 206, 235, 0.1);
+
+  &-icon {
+    font-size: $font-size-4xl;
+    margin-bottom: $spacing-md;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  h3 {
+    font-size: $font-size-2xl;
+    font-weight: 700;
+    color: $dark-gray;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    color: $gray;
+    font-size: $font-size-base;
+    margin: 0;
+  }
+}
+
+// Contact Items Container
+.contact__items {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+// Contact Item Styling
+.contact__item {
+  @include flex-center;
+  gap: $spacing-lg;
+  padding: $spacing-xl;
+  background: $white;
+  border-radius: $border-radius-xl;
+  box-shadow: $shadow-sm;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(135, 206, 235, 0.1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(135deg, $primary-color, $secondary-color);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    box-shadow: $shadow-lg;
+    transform: translateY(-4px);
+    border-color: rgba(135, 206, 235, 0.3);
+
+    &::before {
+      transform: scaleY(1);
+    }
+
+    .contact__icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+  }
+
+  &--primary {
+    background: linear-gradient(135deg, $primary-light, rgba(135, 206, 235, 0.1));
+    border: 2px solid $primary-color;
+
+    .contact__icon {
+      background: linear-gradient(135deg, $primary-color, $secondary-color);
+      color: $white;
+    }
+  }
+
+  &--service {
+    .service-areas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $spacing-xs;
+    }
+
+    .service-area {
+      background: $primary-color;
+      color: $white;
+      padding: $spacing-xs $spacing-sm;
+      border-radius: $border-radius-md;
+      font-size: $font-size-xs;
+      font-weight: 500;
+      border: 1px solid rgba(135, 206, 235, 0.3);
+    }
+  }
+
+  &--messenger {
+    background: linear-gradient(135deg, #0084FF, #0073E6);
+    border: 2px solid #0084FF;
+
+    .contact__icon {
+      background: #0084FF;
+      color: $white;
+    }
+
+    .contact__details {
+      h4, p {
+        color: $white;
+      }
+    }
+  }
+
+  &--hours {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    border: 2px solid #28a745;
+    position: relative;
+    overflow: hidden;
+
+    .contact__icon {
+      background: #28a745;
+      color: $white;
+    }
+
+    .contact__details {
+      h4 {
+        color: $white;
+        font-size: $font-size-xl;
+        margin-bottom: $spacing-md;
+      }
+    }
+  }
+
+  @include mobile {
+    @include flex-column;
+    text-align: center;
+    gap: $spacing-md;
+    padding: $spacing-lg;
+  }
+}
+
+.contact__icon {
+  font-size: $font-size-3xl;
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  @include flex-center;
+  border-radius: 50%;
+  background: $primary-light;
+  color: $primary-color;
+  transition: all 0.3s ease;
+  box-shadow: $shadow-sm;
+
+  @include mobile {
+    font-size: $font-size-2xl;
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.contact__details {
+  flex: 1;
+
+  h4 {
+    font-size: $font-size-lg;
+    font-weight: 600;
+    color: $dark-gray;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    color: $gray;
+    line-height: 1.6;
+    margin-bottom: $spacing-xs;
+  }
+}
+
+// Address Styling
+.contact__addresses {
+  .address {
+    margin-bottom: $spacing-md;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &__label {
+      display: block;
+      font-weight: 600;
+      color: $primary-color;
+      font-size: $font-size-sm;
+      margin-bottom: $spacing-xs;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    p {
+      color: $gray;
+      font-size: $font-size-base;
+      line-height: 1.5;
+      margin: 0;
+    }
+  }
+}
+
+// Contact Info Styling
+.contact__phone,
+.contact__email {
+  font-size: $font-size-lg;
+  font-weight: 600;
+  color: $primary-color;
+  margin-bottom: $spacing-xs;
+}
+
+.contact__availability,
+.contact__response {
+  font-size: $font-size-xs;
+  color: $gray;
+  font-style: italic;
+}
+
+// Map Section Styling
+.contact__map-header {
+  text-align: center;
+  margin-bottom: $spacing-lg;
+  padding: $spacing-lg;
+  background: linear-gradient(135deg, $white, #f8f9fa);
+  border-radius: $border-radius-xl;
+  box-shadow: $shadow-sm;
+  border: 1px solid rgba(135, 206, 235, 0.1);
+
+  .map-header__icon {
+    font-size: $font-size-3xl;
+    margin-bottom: $spacing-md;
+    animation: mapFloat 3s ease-in-out infinite;
+  }
+
+  h3 {
+    font-size: $font-size-xl;
+    font-weight: 600;
+    color: $dark-gray;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    color: $gray;
+    font-size: $font-size-base;
+    margin: 0;
+  }
+}
+
+.contact__map {
+  width: 100%;
+  height: 500px;
+  border-radius: $border-radius-xl;
+  overflow: hidden;
+  box-shadow: $shadow-lg;
+  border: 3px solid $white;
+  
+  .google-map-embed {
+    width: 100%;
+    height: 100%;
+    
+    iframe {
+      width: 100% !important;
+      height: 100% !important;
+      border-radius: $border-radius-xl;
+    }
+  }
+
+  @include mobile {
+    height: 400px;
+  }
+}
+
+// Animations
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes mapFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(5deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+// Messenger Button Styling
+.btn-messenger {
+  background: linear-gradient(135deg, #0084FF, #0073E6);
+  color: $white;
+  border: none;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $border-radius-md;
+  font-weight: 600;
+  font-size: $font-size-sm;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  margin-top: $spacing-sm;
+  box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3);
+
+  &:hover {
+    background: linear-gradient(135deg, #0073E6, #0056CC);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 132, 255, 0.4);
+  }
+
+  .messenger-icon {
+    font-size: $font-size-base;
+  }
+
+  @include mobile {
+    width: 100%;
+    justify-content: center;
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.contact__messenger {
+  font-size: $font-size-base;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: $spacing-sm;
+}
+
+// Opening Hours Styling
+.opening-hours-list {
+  margin-bottom: $spacing-md;
+}
+
+.contact__item--hours {
+  margin-bottom: $spacing-2xl;
+}
+
+.hours-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-xs 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .day {
+    font-weight: 600;
+    color: $white;
+    font-size: $font-size-sm;
+  }
+
+  .time {
+    font-weight: 700;
+    color: $white;
+    font-size: $font-size-sm;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 8px;
+    border-radius: $border-radius-sm;
+  }
+}
+
+.contact__status {
+  font-size: $font-size-sm;
+  color: #90EE90;
+  font-weight: 600;
+  font-style: italic;
+}
+
+// Mobile Optimizations
+@include mobile {
+  .contact {
+    padding: $spacing-xl 0;
+  }
+
+  .contact__content {
+    gap: $spacing-xl;
+  }
+
+  .contact__item {
+    padding: $spacing-lg;
+  }
+
+  .contact__icon {
+    font-size: $font-size-2xl;
+    width: 50px;
+    height: 50px;
+  }
+
+  .contact__details {
+    h4 {
+      font-size: $font-size-base;
+    }
+
+    p {
+      font-size: $font-size-sm;
+    }
+  }
+
+  .contact__phone,
+  .contact__email {
+    font-size: $font-size-base;
+  }
+
+  .service-area {
+    font-size: $font-size-xs;
+    padding: $spacing-xs;
+  }
+} 

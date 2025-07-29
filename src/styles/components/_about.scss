@@ -1,0 +1,372 @@
+@import '../variables';
+@import '../mixins';
+
+.about {
+  @include section-padding;
+  background-color: $white;
+
+  @include mobile {
+    padding: $spacing-xl 0;
+  }
+
+  &__content {
+    @include flex-between;
+    align-items: center;
+    gap: $spacing-3xl;
+    
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__image {
+    flex: 1;
+    @include flex-center;
+    position: relative;
+
+    @include mobile {
+      order: -1;
+    }
+  }
+
+  &__image-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 500px;
+
+    @include mobile {
+      max-width: 300px;
+      height: 300px;
+    }
+  }
+
+    &__image-bg {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, $primary-light 0%, $primary-color 70%, transparent 100%);
+    border-radius: 50%;
+    opacity: 0.2;
+    animation: float 8s ease-in-out infinite;
+
+    @include mobile {
+      width: 250px;
+      height: 250px;
+    }
+  }
+
+  &__image-main {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__text {
+    flex: 1;
+    max-width: 600px;
+
+    @include mobile {
+      max-width: 100%;
+    }
+  }
+
+  &__badge {
+    display: inline-block;
+    background-color: $primary-light;
+    color: $primary-color;
+    padding: $spacing-xs $spacing-md;
+    border-radius: $border-radius-xl;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    margin-bottom: $spacing-md;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    @include mobile {
+      font-size: $font-size-xs;
+      padding: $spacing-xs $spacing-sm;
+      margin-bottom: $spacing-sm;
+    }
+
+    &-text {
+      color: white;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-4xl;
+    font-weight: 700;
+    color: $dark-gray;
+    margin-bottom: $spacing-lg;
+    line-height: 1.2;
+
+    @include mobile {
+      font-size: $font-size-2xl;
+      margin-bottom: $spacing-md;
+    }
+  }
+
+  &__description {
+    font-size: $font-size-lg;
+    color: $gray;
+    margin-bottom: $spacing-xl;
+    line-height: 1.7;
+
+    @include mobile {
+      font-size: $font-size-base;
+      margin-bottom: $spacing-lg;
+    }
+  }
+
+  &__features {
+    margin-bottom: $spacing-2xl;
+
+    @include mobile {
+      margin-bottom: $spacing-xl;
+    }
+  }
+
+  &__business-info {
+    margin-bottom: $spacing-2xl;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-2xl;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: $spacing-xl;
+    }
+  }
+
+  &__stats {
+    @include flex-center;
+    gap: $spacing-xl;
+    margin-bottom: $spacing-xl;
+
+    @include mobile {
+      @include flex-column;
+      gap: $spacing-md;
+      margin-bottom: $spacing-lg;
+    }
+  }
+}
+
+.feature {
+  @include flex-center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+  text-align: left;
+
+  @include mobile {
+    text-align: center;
+    @include flex-column;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
+  }
+
+  &__icon {
+    font-size: $font-size-2xl;
+    flex-shrink: 0;
+
+    @include mobile {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__content {
+    h4 {
+      font-size: $font-size-lg;
+      font-weight: 600;
+      color: $dark-gray;
+      margin-bottom: $spacing-xs;
+
+      @include mobile {
+        font-size: $font-size-base;
+        margin-bottom: $spacing-xs;
+      }
+    }
+
+    p {
+      color: $gray;
+      font-size: $font-size-base;
+      line-height: 1.6;
+      margin-bottom: 0;
+
+      @include mobile {
+        font-size: $font-size-sm;
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+.business-features {
+  h3 {
+    font-size: $font-size-xl;
+    font-weight: 600;
+    color: $dark-gray;
+    margin-bottom: $spacing-lg;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .feature-item {
+    background: $white;
+    padding: $spacing-md;
+    border-radius: $border-radius-lg;
+    border: 1px solid #f0f0f0;
+    font-size: $font-size-sm;
+    font-weight: 500;
+    color: $dark-gray;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    transition: $transition-normal;
+
+    &:hover {
+      border-color: $primary-color;
+      box-shadow: $shadow-sm;
+    }
+  }
+}
+
+.opening-hours {
+  h3 {
+    font-size: $font-size-xl;
+    font-weight: 600;
+    color: $dark-gray;
+    margin-bottom: $spacing-lg;
+  }
+
+  .hours-grid {
+    background: $white;
+    border-radius: $border-radius-lg;
+    border: 1px solid #f0f0f0;
+    overflow: hidden;
+    margin-bottom: $spacing-md;
+  }
+
+  .hours-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-sm $spacing-md;
+    border-bottom: 1px solid #f0f0f0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .day {
+      font-weight: 500;
+      color: $dark-gray;
+    }
+
+    .time {
+      font-weight: 600;
+      color: $primary-color;
+    }
+  }
+
+  .verified-badge {
+    text-align: center;
+    
+    span {
+      background: linear-gradient(135deg, #4CAF50, #45a049);
+      color: white;
+      padding: $spacing-xs $spacing-md;
+      border-radius: $border-radius-lg;
+      font-size: $font-size-sm;
+      font-weight: 500;
+      display: inline-block;
+    }
+  }
+}
+
+.stat {
+  @include flex-column-center;
+  text-align: center;
+
+  &__number {
+    font-size: $font-size-3xl;
+    font-weight: 700;
+    color: $primary-color;
+    display: block;
+
+    @include mobile {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  &__label {
+    font-size: $font-size-sm;
+    color: $gray;
+    font-weight: 500;
+
+    @include mobile {
+      font-size: $font-size-xs;
+    }
+  }
+}
+
+// Award Icon
+.award-icon {
+  position: absolute;
+  top: 15%;
+  left: 14%;
+
+  width: 250px;
+  height: 250px;
+  @include flex-center;
+  animation: awardFloat 4s ease-in-out infinite;
+  cursor: pointer;
+  z-index: 3;
+
+  @include mobile {
+    width: 180px;
+    height: 180px;
+    left: 55%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.5);
+    }
+  }
+
+  @include mobile {
+    &:hover {
+      img {
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes awardFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+} 
