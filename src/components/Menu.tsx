@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/components/_menu.scss';
+import { api, Product } from '../logic/api';
+import 'aos/dist/aos.css';
 
-// Import images
+// Import fallback images for when API images fail to load
 import mushroomPizza from '../assets/images/Mushroom Pizza.jpg';
 import cheesePizza from '../assets/images/Cheeze Pizza.jpg';
 import croissant from '../assets/images/croissant.jpg';
@@ -19,171 +21,175 @@ import friesChickenNuggets from '../assets/images/Fires & Chicken Nuggets With D
 import coffeeMilkyLatte from '../assets/images/Coffee Milky Latte.jpg';
 import fullMenu from '../assets/images/Full Menu.jpg';
 import fullMenuSnacksDrinks from '../assets/images/Full-Menu-Snacks-Drinks.jpg';
-import 'aos/dist/aos.css';
-// @ts-ignore
-import AOS from 'aos';
 
-interface MenuItem {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  category: string;
-  popular?: boolean;
-}
+// Fallback images mapping
+const fallbackImages: { [key: string]: string } = {
+  'Mushroom Pizza': mushroomPizza,
+  'Cheese Pizza': cheesePizza,
+  'Butter Croissant': croissant,
+  'Chocolate Cake': chocolateCake,
+  'Chicken Wings': chickenWings,
+  'Spaghetti with Meatballs': spaghettiMeatballs,
+  'Chocolate Latte': chocoLatte,
+  'Beef Burger & Fries': beefBurgerFries,
+  'Salad': salad,
+  'Waffle Ice Cream': waffleIceCream,
+  'Waffle Cookies and Cream': waffleCookiesCream,
+  'Ube Frappe': ubeFrappe,
+  'Mango Frappe': mangoFrappe,
+  'Fries & Chicken Nuggets': friesChickenNuggets,
+  'Coffee Milky Latte': coffeeMilkyLatte,
+};
 
-const menuItems: MenuItem[] = [
+// Static fallback data
+const staticProducts: Product[] = [
   {
-    id: 1,
-    name: "Mushroom Pizza",
-    description: "Fresh mushrooms, mozzarella cheese, and our signature tomato sauce on crispy crust",
+    _id: '1',
+    name: 'Mushroom Pizza',
+    description: 'Fresh mushrooms, mozzarella cheese, and our signature tomato sauce on crispy crust',
     price: 450,
-    image: mushroomPizza,
-    category: "Main Course",
-    popular: true
+    category: 'main-course',
+    images: [mushroomPizza],
+    stock: 10,
+    rating: 4.5,
+    numReviews: 12,
+    isActive: true,
+    featured: true,
+    tags: ['pizza', 'mushroom'],
+    createdAt: new Date().toISOString()
   },
   {
-    id: 2,
-    name: "Cheese Pizza",
-    description: "Classic cheese pizza with premium mozzarella and our homemade tomato sauce",
+    _id: '2',
+    name: 'Cheese Pizza',
+    description: 'Classic cheese pizza with premium mozzarella and our homemade tomato sauce',
     price: 420,
-    image: cheesePizza,
-    category: "Main Course",
-    popular: true
+    category: 'main-course',
+    images: [cheesePizza],
+    stock: 15,
+    rating: 4.3,
+    numReviews: 8,
+    isActive: true,
+    featured: true,
+    tags: ['pizza', 'cheese'],
+    createdAt: new Date().toISOString()
   },
   {
-    id: 3,
-    name: "Butter Croissant",
-    description: "Flaky, buttery croissant made fresh daily with premium butter",
-    price: 120,
-    image: croissant,
-    category: "Desserts" // Changed from Breakfast to Desserts
-  },
-  {
-    id: 4,
-    name: "Chocolate Cake",
-    description: "Rich chocolate cake with chocolate ganache and fresh berries",
-    price: 180,
-    image: chocolateCake,
-    category: "Desserts",
-    popular: true
-  },
-  {
-    id: 5,
-    name: "Chicken Wings",
-    description: "Crispy chicken wings served with your choice of sauce",
-    price: 280,
-    image: chickenWings,
-    category: "Appetizers"
-  },
-  {
-    id: 6,
-    name: "Spaghetti with Meatballs",
-    description: "Al dente spaghetti with homemade meatballs in rich tomato sauce",
-    price: 320,
-    image: spaghettiMeatballs,
-    category: "Main Course"
-  },
-  {
-    id: 7,
-    name: "Chocolate Latte",
-    description: "Rich espresso with steamed milk and chocolate syrup",
+    _id: '3',
+    name: 'Chocolate Latte',
+    description: 'Rich espresso with steamed milk and chocolate syrup',
     price: 150,
-    image: chocoLatte,
-    category: "Beverages",
-    popular: true
+    category: 'beverages',
+    images: [chocoLatte],
+    stock: 20,
+    rating: 4.2,
+    numReviews: 6,
+    isActive: true,
+    featured: true,
+    tags: ['coffee', 'chocolate'],
+    createdAt: new Date().toISOString()
   },
   {
-    id: 8,
-    name: "Beef Burger & Fries",
-    description: "Juicy beef patty with fresh vegetables and crispy golden fries",
+    _id: '4',
+    name: 'Chocolate Cake',
+    description: 'Rich chocolate cake with chocolate ganache and fresh berries',
+    price: 180,
+    category: 'desserts',
+    images: [chocolateCake],
+    stock: 8,
+    rating: 4.6,
+    numReviews: 7,
+    isActive: true,
+    featured: true,
+    tags: ['cake', 'chocolate'],
+    createdAt: new Date().toISOString()
+  },
+  {
+    _id: '5',
+    name: 'Chicken Wings',
+    description: 'Crispy chicken wings served with your choice of sauce',
+    price: 280,
+    category: 'appetizers',
+    images: [chickenWings],
+    stock: 12,
+    rating: 4.1,
+    numReviews: 5,
+    isActive: true,
+    featured: false,
+    tags: ['wings', 'chicken'],
+    createdAt: new Date().toISOString()
+  },
+  {
+    _id: '6',
+    name: 'Beef Burger & Fries',
+    description: 'Juicy beef patty with fresh vegetables and crispy golden fries',
     price: 380,
-    image: beefBurgerFries,
-    category: "Main Course"
-  },
-  {
-    id: 9,
-    name: "Fresh Garden Salad",
-    description: "Mixed greens with cherry tomatoes, cucumber, and house dressing",
-    price: 220,
-    image: salad,
-    category: "Appetizers"
-  },
-  {
-    id: 10,
-    name: "Waffle with Ice Cream",
-    description: "Crispy waffle served with vanilla ice cream and maple syrup",
-    price: 200,
-    image: waffleIceCream,
-    category: "Desserts"
-  },
-  {
-    id: 11,
-    name: "Waffle Cookies & Cream",
-    description: "Delicious waffle topped with cookies & cream ice cream",
-    price: 220,
-    image: waffleCookiesCream,
-    category: "Desserts",
-    popular: true
-  },
-  {
-    id: 12,
-    name: "Ube Frappe",
-    description: "Smooth ube (purple yam) frappe with whipped cream",
-    price: 160,
-    image: ubeFrappe,
-    category: "Beverages"
-  },
-  {
-    id: 13,
-    name: "Mango Frappe",
-    description: "Refreshing mango frappe with fresh mango chunks",
-    price: 160,
-    image: mangoFrappe,
-    category: "Beverages"
-  },
-  {
-    id: 14,
-    name: "Fries & Chicken Nuggets",
-    description: "Crispy chicken nuggets with golden fries and dipping sauce",
-    price: 250,
-    image: friesChickenNuggets,
-    category: "Appetizers"
-  },
-  {
-    id: 15,
-    name: "Coffee Milky Latte",
-    description: "Smooth coffee latte with creamy milk and rich espresso",
-    price: 140,
-    image: coffeeMilkyLatte,
-    category: "Beverages"
+    category: 'main-course',
+    images: [beefBurgerFries],
+    stock: 18,
+    rating: 4.4,
+    numReviews: 10,
+    isActive: true,
+    featured: false,
+    tags: ['burger', 'beef'],
+    createdAt: new Date().toISOString()
   }
 ];
 
 const categories = [
   { id: 'all', name: 'All', icon: '🍽️' },
-  { id: 'appetizers', name: 'Appetizers', icon: '🥗' },
   { id: 'main-course', name: 'Main Course', icon: '🍽️' },
+  { id: 'appetizers', name: 'Appetizers', icon: '🍗' },
+  { id: 'desserts', name: 'Desserts', icon: '🍰' },
   { id: 'beverages', name: 'Beverages', icon: '☕' },
-  { id: 'desserts', name: 'Desserts', icon: '🍰' }
+  { id: 'breakfast', name: 'Breakfast', icon: '🥐' },
+  { id: 'snacks', name: 'Snacks', icon: '🍴' },
 ];
 
 const Menu: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState('all');
   const [showAllItems, setShowAllItems] = useState(false);
   const [showFullMenuModal, setShowFullMenuModal] = useState(false);
   const [showSnacksDrinksModal, setShowSnacksDrinksModal] = useState(false);
   const [currentMenuImage, setCurrentMenuImage] = useState(fullMenu);
 
-  const filteredItems = menuItems.filter(item => {
+  // Fetch products from API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        console.log('🔍 Attempting to fetch products from API...');
+        const response = await api.getProducts({
+          limit: 50, // Get more products to have variety
+        });
+        
+        console.log('✅ API products received:', response.products.length);
+        setProducts(response.products);
+      } catch (err) {
+        console.error('❌ Failed to fetch products from API:', err);
+        console.log('🔄 Falling back to static data...');
+        setProducts(staticProducts);
+        setError('Using sample data - API connection failed');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const filteredProducts = products.filter(product => {
     if (activeCategory === 'all') return true;
-    return item.category.toLowerCase().replace(' ', '-') === activeCategory;
+    return product.category.toLowerCase().replace(' ', '-') === activeCategory;
   });
 
   // Show only 6 items initially, or all items if showAllItems is true
-  const displayedItems = showAllItems ? filteredItems : filteredItems.slice(0, 6);
-  const hasMoreItems = filteredItems.length > 6;
+  const displayedItems = showAllItems ? filteredProducts : filteredProducts.slice(0, 6);
+  const hasMoreItems = filteredProducts.length > 6;
 
   // Handle keyboard events for modal
   useEffect(() => {
@@ -224,6 +230,32 @@ const Menu: React.FC = () => {
     setShowSnacksDrinksModal(false);
   };
 
+  // Get image for product
+  const getProductImage = (product: Product) => {
+    if (product.images && product.images.length > 0) {
+      return product.images[0];
+    }
+    // Fallback to static images based on product name
+    return fallbackImages[product.name] || fallbackImages['Mushroom Pizza'];
+  };
+
+  if (loading) {
+    return (
+      <section id="menu" className="menu">
+        <div className="container">
+          <div className="section-title" data-aos="fade-up" data-aos-delay="50" data-aos-offset="50">
+            <h2>Our Featured Menu</h2>
+            <p>Discover our carefully curated selection of delicious dishes and beverages</p>
+          </div>
+          <div className="loading-container">
+            <div className="loading-spinner"></div>
+            <p>Loading menu items...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <>
       <section id="menu" className="menu">
@@ -232,6 +264,20 @@ const Menu: React.FC = () => {
             <h2>Our Featured Menu</h2>
             <p>Discover our carefully curated selection of delicious dishes and beverages</p>
           </div>
+          
+          {error && (
+            <div className="error-notice" style={{ 
+              background: '#fff3cd', 
+              border: '1px solid #ffeaa7', 
+              padding: '10px', 
+              margin: '10px 0', 
+              borderRadius: '5px',
+              textAlign: 'center',
+              color: '#856404'
+            }}>
+              <p>{error}</p>
+            </div>
+          )}
           
           <div className="menu__categories" data-aos="fade-up" data-aos-delay="50" data-aos-offset="50">
             {categories.map((category) => (
@@ -247,32 +293,32 @@ const Menu: React.FC = () => {
           </div>
           
           <div className="menu__grid" data-aos-delay="50">
-            {displayedItems.map((item) => (
-              <div key={item.id} className={`menu-item ${item.popular ? 'menu-item--popular' : ''}`} >
-                {item.popular && (
+            {displayedItems.map((product) => (
+              <div key={product._id} className={`menu-item ${product.featured ? 'menu-item--popular' : ''}`} >
+                {product.featured && (
                   <div className="popular-badge">
                     <span>🔥 Popular</span>
                   </div>
                 )}
                 
                 <div className="menu-item__image">
-                  <img src={item.image} alt={item.name} />
+                  <img src={getProductImage(product)} alt={product.name} />
                   <div className="menu-item__overlay">
                     <div className="menu-item__details">
-                      <h4>{item.name}</h4>
-                      <p>{item.description}</p>
-                      <span className="price">₱{item.price.toFixed(0)}</span>
+                      <h4>{product.name}</h4>
+                      <p>{product.description}</p>
+                      <span className="price">₱{product.price.toFixed(0)}</span>
                     </div>
                   </div>
                 </div>
                 
                 <div className="menu-item__content">
                   <div className="menu-item__header">
-                    <h3 className="menu-item__name">{item.name}</h3>
-                    <span className="menu-item__price">₱{item.price.toFixed(0)}</span>
+                    <h3 className="menu-item__name">{product.name}</h3>
+                    <span className="menu-item__price">₱{product.price.toFixed(0)}</span>
                   </div>
-                  <p className="menu-item__description">{item.description}</p>
-                  <div className="menu-item__category">{item.category}</div>
+                  <p className="menu-item__description">{product.description}</p>
+                  <div className="menu-item__category">{product.category}</div>
                 </div>
               </div>
             ))}
@@ -284,7 +330,7 @@ const Menu: React.FC = () => {
                 className="btn btn-secondary btn-large"
                 onClick={handleViewMoreToggle}
               >
-                {showAllItems ? 'View Less' : `View More (${filteredItems.length - 6} more items)`}
+                {showAllItems ? 'View Less' : `View More (${filteredProducts.length - 6} more items)`}
               </button>
             </div>
           )}
