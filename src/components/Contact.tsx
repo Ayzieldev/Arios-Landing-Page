@@ -2,8 +2,6 @@ import React from 'react';
 import GoogleMapEmbed from './GoogleMapEmbed';
 import '../styles/components/_contact.scss';
 import 'aos/dist/aos.css';
-// @ts-ignore
-import AOS from 'aos';
 
 const Contact: React.FC = () => {
   const openMessenger = () => {

@@ -11,7 +11,6 @@ import waffleIceCream from '../assets/images/Waffle Ice cream.jpg';
 import waffleCookiesCream from '../assets/images/Waffle Ice cream Cookies and Cream.jpg';
 
 const Hero: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const coffeeImages = [
@@ -24,16 +23,6 @@ const Hero: React.FC = () => {
     { src: waffleIceCream, alt: 'Waffle Ice Cream' },
     { src: waffleCookiesCream, alt: 'Waffle Ice Cream Cookies and Cream' }
   ];
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
