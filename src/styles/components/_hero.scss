@@ -55,6 +55,13 @@
       gap: $spacing-2xl;
       padding: 0 $spacing-lg;
     }
+
+    @include tablet {
+      @include flex-column;
+      text-align: center;
+      gap: $spacing-2xl;
+      padding: 0 $spacing-lg;
+    }
   }
 
   &__text-section {
@@ -65,6 +72,15 @@
     margin-top: 30px;
 
     @include mobile {
+      flex: 1;
+      max-width: 100%;
+      order: 2;
+      padding-left: $spacing-lg;
+      margin-top: 0px;
+      transform: translateY(-50px);
+    }
+
+    @include tablet {
       flex: 1;
       max-width: 100%;
       order: 2;
@@ -134,6 +150,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
+    @include tablet {
+      max-width: 100%;
+    }
+
     @include mobile {
       max-width: 100%;
     }
@@ -147,7 +167,12 @@
     gap: $spacing-md;
     margin-bottom: $spacing-2xl;
 
-    @include mobile {
+    @include tablet {
+      @include flex-column;
+      width: 100%;
+    }
+
+     @include mobile {
       @include flex-column;
       width: 100%;
     }
@@ -198,8 +223,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-left: 2rem;
     padding-top: 2rem;
+    flex-shrink: 1;
+
+    @include tablet {
+      flex: 1;
+      height: 400px;
+      order: 1;
+      padding-left: 0;
+    }
 
     @include mobile {
       flex: 1;
@@ -228,6 +260,14 @@
     border: 8px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     z-index: 3;
+
+    @include tablet {
+      width: 250px;
+      height: 250px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
 
     @include mobile {
       width: 250px;
