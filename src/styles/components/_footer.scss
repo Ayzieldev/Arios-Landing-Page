@@ -121,7 +121,8 @@
 
   &__contact {
     .contact-item {
-      @include flex-center;
+      // @include flex-center;
+      display: flex;
       gap: $spacing-sm;
       margin-bottom: $spacing-sm;
       color: rgba(255, 255, 255, 0.8);
