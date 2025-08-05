@@ -141,7 +141,8 @@
   }
 
   &__stats {
-    @include flex-center;
+    // @include flex-center;
+    display: flex;
     gap: $spacing-xl;
     margin-bottom: $spacing-xl;
 
