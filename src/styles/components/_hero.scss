@@ -43,7 +43,7 @@
   &__content {
     @include flex-between;
     align-items: flex-start;
-    gap: 10rem;
+    gap: 8rem;
     width: 100%;
     position: relative;
     z-index: 2;
@@ -69,7 +69,8 @@
       max-width: 100%;
       order: 2;
       padding-left: $spacing-lg;
-      margin-top: 100px;
+      margin-top: 0px;
+      transform: translateY(-50px);
     }
   }
 
