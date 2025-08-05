@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
   }, [coffeeImages.length]);
 
   const scrollToMenu = () => {
-    const menuSection = document.getElementById('menu');
+    const menuSection = document.getElementById('about');
     if (menuSection) {
       menuSection.scrollIntoView({ behavior: 'smooth' });
     }
@@ -138,7 +138,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
       
-      <div className="hero__scroll-indicator">
+      <div className="hero__scroll-indicator" onClick={scrollToMenu}>
         <div className="scroll-arrow"></div>
         <span>Scroll Down</span>
       </div>
