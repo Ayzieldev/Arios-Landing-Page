@@ -82,6 +82,7 @@ a {
 
 // Button Styles
 .btn {
+  font-family: $font-family-primary;
   display: inline-block;
   padding: $spacing-sm $spacing-lg;
   border-radius: $border-radius-md;
