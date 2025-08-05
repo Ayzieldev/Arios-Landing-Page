@@ -69,6 +69,7 @@
       &--open {
         transform: translateY(0);
         opacity: 1;
+        top: 0;
         visibility: visible;
       }
     }
@@ -81,12 +82,13 @@
       @include mobile {
         @include flex-column;
         gap: $spacing-lg;
+        height: 100vh;
       }
     }
 
     .nav__item {
       .nav__link {
-        color: $white;
+        color: $primary-color;
         font-weight: 400;
         text-decoration: none;
         transition: $transition-fast;
@@ -96,10 +98,6 @@
         font-family: $font-family-primary;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-
-        &:hover {
-          color: rgba(255, 255, 255, 0.8);
-        }
 
         &::after {
           content: '';
