@@ -7,6 +7,7 @@ import Menu from './components/Menu';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LiveChat from './components/LiveChat';
+import './fontawesome';
 
 function App() {
   return (

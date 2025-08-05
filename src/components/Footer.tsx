@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/components/_footer.scss';
 import ariosLogo from '../assets/images/Arios Logo.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Footer: React.FC = () => {
   return (
@@ -18,10 +19,10 @@ const Footer: React.FC = () => {
               We bring you the finest culinary delights in a warm, welcoming atmosphere.
             </p>
             <div className="footer__social">
-              <a href="https://facebook.com" className="social-link">📘</a>
-              <a href="https://instagram.com" className="social-link">📷</a>
-              <a href="https://twitter.com" className="social-link">🐦</a>
-              <a href="https://youtube.com" className="social-link">📺</a>
+              <a href="https://facebook.com" className="social-link"><FontAwesomeIcon icon={['fab', 'facebook']} /></a>
+              <a href="https://instagram.com" className="social-link"><FontAwesomeIcon icon={['fab', 'instagram']} /></a>
+              <a href="https://twitter.com" className="social-link"><FontAwesomeIcon icon={['fab', 'x-twitter']} /></a>
+              <a href="https://youtube.com" className="social-link"><FontAwesomeIcon icon={['fab', 'youtube']} /></a>
             </div>
           </div>
           
