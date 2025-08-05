@@ -90,12 +90,12 @@ const Hero: React.FC = () => {
               Experience our signature coffee blends and warm hospitality.
             </p>
             <div className="hero__actions">
-            <button className="btn btn-primary" onClick={openMessenger}>
-              TESTY COFFEE
-            </button>
-            <button className="btn btn-secondary" onClick={scrollToMenu}>
-              LEARN MORE
-            </button>
+              <button className="btn btn-primary" onClick={openMessenger}>
+                TESTY COFFEE
+              </button>
+              <button className="btn btn-secondary" onClick={scrollToMenu}>
+                LEARN MORE
+              </button>
           </div>
         </div>
         

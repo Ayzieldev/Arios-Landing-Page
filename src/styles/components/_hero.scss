@@ -140,7 +140,8 @@
 
 
   &__actions {
-    @include flex-center;
+    // @include flex-center;
+    display: flex;
     gap: $spacing-md;
     margin-bottom: $spacing-2xl;
 
